@@ -14,7 +14,7 @@ public class PostsApiController {
     private final PostsService postsService;
 
     /**
-     * 회원 등록
+     * 게시글 등록
      */
     @PostMapping("/api/v1/posts")
     public Long save(@RequestBody PostsSaveRequestDto requestDto) {
@@ -23,7 +23,7 @@ public class PostsApiController {
     }
 
     /**
-     * 회원 수정
+     * 게시글 수정
      */
     @PutMapping("/api/v1/posts/{id}")
     public Long update(@PathVariable Long id, @RequestBody
@@ -33,12 +33,21 @@ public class PostsApiController {
     }
 
     /**
-     * 회원 조회
+     * 게시글 조회
      */
     @GetMapping("/api/v1/posts/{id}")
     public PostsResponseDto findById(@PathVariable Long id) {
 
         return postsService.findById(id);
+    }
+
+    /**
+     *  게시글 삭제
+     */
+    @DeleteMapping("/api/v1/posts/{id}")
+    public Long delete(@PathVariable Long id) {
+        postsService.delete(id);
+        return id;
     }
 
 }
