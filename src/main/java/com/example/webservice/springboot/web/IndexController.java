@@ -33,4 +33,17 @@ public class IndexController {
 
         return "post-save";
     }
+
+    /**
+     * 게시글 수정 화면
+     */
+    @GetMapping("/posts/update/{id}")
+    public String postUpdate(@PathVariable Long id, Model model) {
+
+        PostsResponseDto dto = postsService.findById(id);
+        // postsService.findById(id)로 가져온 결과를 post로 posts-update에 전달
+        model.addAttribute("post", dto);
+
+        return "posts-update";
+    }
 }
