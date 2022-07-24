@@ -12,7 +12,8 @@ import java.time.LocalDateTime;
 @Getter
 // JPA Entity 클래스들이 해당 클래스를 상속할 경우 필드(createdDate,modifiedDate) 또한 컬럼으로 인식
 @MappedSuperclass
-@EntityListeners(AuditingEntityListener.class) // 해당 클래스에 Auditing 기능 포함
+// BaseTimeEntity 클래스에 Auditing 기능 포함
+@EntityListeners(AuditingEntityListener.class)
 public abstract class BaseTimeEntity {
 
     @CreatedDate
