@@ -3,9 +3,20 @@
 
 <h1>스프링부트로 시작하는 웹 서비스 Ver.2</h1>
 <div class="col-md-12">
+    <!-- 로그인 기능 영역 -->
     <div class="row">
         <div class="col-md-6">
             <a href="/posts/save" role="button" class="btn btn-primary">글 등록</a>
+            {{#userName}}
+                Logged in as: <span id="user">{{userName}}</span>
+                <!-- 로그 아웃 URL -->
+                <a href="/logout" class="btn btn-info active" role="button">Logout</a>
+            {{/userName}}
+            <!-- 해당 값이 존재하지 않는 경우 ^ 사용 -->
+            {{^userName}}
+                <!-- 로그인 URL -->
+                <a href="/oauth2/authorization/google" class="btn btn-success active" role="button">Google Login</a>
+            {{/userName}}
         </div>
     </div>
     <br>
