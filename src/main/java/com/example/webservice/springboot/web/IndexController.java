@@ -1,5 +1,6 @@
 package com.example.webservice.springboot.web;
 
+import com.example.webservice.springboot.config.auth.LoginUser;
 import com.example.webservice.springboot.config.auth.dto.SessionUser;
 import com.example.webservice.springboot.service.posts.PostsService;
 import com.example.webservice.springboot.web.dto.PostsResponseDto;
@@ -23,12 +24,11 @@ public class IndexController {
      * 전체 조회 화면 추가
      */
     @GetMapping("/")
-    public String index(Model model) { // 서버 템플릿 엔진에서 사용할 수 있는 객체를 저장
+    // @LoginUser 사용 시 세션 정보 가져오기 가능
+    // 메소드 인자로 세션값 받기
+    public String index(Model model, @LoginUser SessionUser user) { // 서버 템플릿 엔진에서 사용할 수 있는 객체를 저장
         //postsService.findAllDesc()로 가져온 결과를 posts로 index.mustache에 전달
         model.addAttribute("posts", postsService.findAllDesc());
-
-        // 로그인 성공 시 값 가져오기 가능
-        SessionUser user = (SessionUser) httpSession.getAttribute("user");
 
         // 세션에 저장된 값 있으면 model에 userName으로 등록
         // 세션에 저장된 값 없으면 로그인 버튼 노출
